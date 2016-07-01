@@ -10,7 +10,8 @@ module.exports = function(grunt) {
 			target: {
 				files: [{
 						expand: true,
-	          src: 'source/script/*.js',
+						cwd: 'source',
+	          src: 'script/*.js',
 	          dest: 'build/'
 	      }]
       }
@@ -19,16 +20,18 @@ module.exports = function(grunt) {
 		  target: {
 		    files: [{
 					expand: true,
-		      src: ['source/style/*.css'],
+					cwd: 'source',
+		      src: ['style/*.css'],
 		      dest: 'build/',
 		    }]
 		  }
 		},
 		copy: {
 		  main: {
+
 		    files: [
-		      {src: ['source/image/*'], dest: 'build/'},
-					{src: ['source/index.html'], dest: 'build/'},
+		      {expand: true,cwd: 'source',src: ['image/*'], dest: 'build/'},
+					{expand: true,cwd: 'source',src: ['index.html'], dest: 'build/'},
 		    ],
 		  },
 		},
