@@ -1,4 +1,11 @@
-// game schedule
+/*
+
+Author: Zhaoyang Li, lizy14@yeah.net
+Date: 2016-07-02
+
+*/
+
+// game schedule as a binary tree
 /*
                        0
            1                      2
@@ -44,47 +51,47 @@ function forecast(strength, team){
 		}
 	}
 
-	var p = [];
+	var tree = [];
 	/*
-	p[i][t] is the probability
-	of team t appearing at tree node i
+	tree[i][t] is the probability
+	of team t being present at tree node i
 	*/
 
 	//first round
 	range(8).forEach(function(_){
 		var i = 7 + _;
-		p[i] = {};
+		tree[i] = {};
 		var left    = teams[2*i + 1 - 15];
 		var right   = teams[2*i + 2 - 15];
 		var leftWin = strength[left] / (strength[left] + strength[right]);
-		p[i][left]  = leftWin;
-		p[i][right] = 1 - leftWin;
+		tree[i][left]  = leftWin;
+		tree[i][right] = 1 - leftWin;
 	});
 
 	//second, third, forth round
 	[4,2,1].forEach(function(roundID){
 		range(roundID).forEach(function(_){
 			var i = roundID-1 + _;
-			p[i] = {};
-			var leftNode  = p[2*i + 1];
-			var rightNode = p[2*i + 2];
+			tree[i] = {};
+			var leftNode  = tree[2*i + 1];
+			var rightNode = tree[2*i + 2];
 
 			forTeams(leftNode, function(l){
 				forTeams(rightNode, function(r){
 					// team names l vs r
 					var meet = leftNode[l] * rightNode[r];
 					var leftWin = strength[l] / (strength[l] + strength[r]);
-					if(!(p[i][l]))
-						p[i][l] = 0;
-					if(!(p[i][r]))
-						p[i][r] = 0;
-					p[i][l] += meet * leftWin;
-					p[i][r] += meet * (1-leftWin);
+					if(!(tree[i][l]))
+						tree[i][l] = 0;
+					if(!(tree[i][r]))
+						tree[i][r] = 0;
+					tree[i][l] += meet * leftWin;
+					tree[i][r] += meet * (1-leftWin);
 				});
 			});
 		});
 	});
-	return p[0][team];
+	return tree[0][team];
 }
 
 function test(){
@@ -121,5 +128,3 @@ function test(){
 	});
 	console.log(padding("total", maxLength) + '\t\t' + total.toFixed(4));
 }
-
-test();
