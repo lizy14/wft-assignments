@@ -1,0 +1,125 @@
+// game schedule
+/*
+                       0
+           1                      2
+      3           4          5           6
+   7     8     9    10    11    12    13    14
+15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+*/
+
+// tree nodes 15 - 30
+var teams = [
+	"Switzerland",
+	"Poland",
+	"Croatia",
+	"Portugal",
+	"Wales",
+	"Northern Ireland",
+	"Hungary",
+	"Belgium",
+	"Germany",
+	"Slovakia",
+	"Italy",
+	"Spain",
+	"France",
+	"Republic of Ireland",
+	"England",
+	"Iceland"
+];
+
+function forecast(strength, team){
+	function range(n){ //[0, n)
+    var i;
+    var arr=[];
+    for(i=0; i<n; i++){
+        arr.push(i);
+    }
+    return arr;
+	}
+	function forTeams(object, callback){
+		for (var property in object) {
+			if (object.hasOwnProperty(property)) {
+					callback(property);
+			}
+		}
+	}
+
+	var p = [];
+	/*
+	p[i][t] is the probability
+	of team t appearing at tree node i
+	*/
+
+	//first round
+	range(8).forEach(function(_){
+		var i = 7 + _;
+		p[i] = {};
+		var left    = teams[2*i + 1 - 15];
+		var right   = teams[2*i + 2 - 15];
+		var leftWin = strength[left] / (strength[left] + strength[right]);
+		p[i][left]  = leftWin;
+		p[i][right] = 1 - leftWin;
+	});
+
+	//second, third, forth round
+	[4,2,1].forEach(function(roundID){
+		range(roundID).forEach(function(_){
+			var i = roundID-1 + _;
+			p[i] = {};
+			var leftNode  = p[2*i + 1];
+			var rightNode = p[2*i + 2];
+
+			forTeams(leftNode, function(l){
+				forTeams(rightNode, function(r){
+					// team names l vs r
+					var meet = leftNode[l] * rightNode[r];
+					var leftWin = strength[l] / (strength[l] + strength[r]);
+					if(!(p[i][l]))
+						p[i][l] = 0;
+					if(!(p[i][r]))
+						p[i][r] = 0;
+					p[i][l] += meet * leftWin;
+					p[i][r] += meet * (1-leftWin);
+				});
+			});
+		});
+	});
+	return p[0][team];
+}
+
+function test(){
+	var strength = 	(function(){
+		var v = {};
+		teams.forEach(function(e){
+			v[e] = 1;//Math.random();
+		});
+		v['Switzerland']=2;
+		return v;
+	})();
+	function padding(str, length){
+		return (str+Array(length).join(' ')).substring(0, length);
+	}
+	function maxInArray(arr, func){
+		if(!func)
+			func = function(x){return x;}
+		var max = -Infinity;
+		arr.forEach(function(e){
+			var _ = func(e);
+			if(_ > max)
+				max = _;
+		})
+		return max;
+	}
+	var maxLength = maxInArray(teams, function(s){
+		return s.length;
+	})
+	var total = 0;
+	teams.forEach(function(e){
+		var	win = forecast(strength, e);
+		total += win;
+		console.log(padding(e, maxLength) + '\t' + strength[e] + '\t' + win.toFixed(4));
+	});
+	console.log(padding("total", maxLength) + '\t\t' + total.toFixed(4));
+}
+
+test();
