@@ -1,0 +1,19 @@
+body{
+	font-family: consolas, courier, monospace;
+}
+img.icon{
+	height: 32px;
+	width: 32px;
+	vertical-align: middle;
+}
+img.head{
+	height:110px;
+	width:110px;
+	border-radius:55px;
+}
+a{
+	text-decoration: none;
+}
+li{
+	margin-bottom: 10px;
+}
