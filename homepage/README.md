@@ -10,7 +10,7 @@ email address lizy14@mails.tsinghua.edu.cn
 This submission tries to satisfy all of the requirements, including the "advanced requirements" of responsive design to support mobile devices and an automated workflow for minifying.
 
 ### responsive design
-`viewport` metadata and `@media` rules are present, enabling . On desktop, text of personal introduction appears on the right of the avatar, while on smaller screens, the avatar appears in the middle and the text appears under it.
+`viewport` metadata and `@media` rules are present. On desktop, text of personal introduction appears on the right of the avatar, while on smaller screens, the avatar appears in the middle and the text appears under it.
 
 Tested on iPhones and iPads emulated by Chrome F12.
 

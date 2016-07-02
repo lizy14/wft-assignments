@@ -79,6 +79,7 @@ Output is `'function'`. The interpreter sees the function declaration `function 
 		baz: {
 			x: 1,
 			bar: function(){
+				console.log(bar.caller);
 				return this.x;
 			}
 		}
@@ -89,11 +90,11 @@ Output is `'function'`. The interpreter sees the function declaration `function 
 
 Outputs are `3` and `1`.
 
-On the call to `go()`, `this` inside the function `bar` points to the global object `window`, who is the caller. The assignment made to `window.x` is made on the first line, making the value of which a `3`. On the call to `foo.baz.bar()`, the caller is `foo.baz`, within whose scope the value of `x` is `1`.
+On the call to `go()`, `this` inside the function `bar` points to the global object `window`, who is the caller. The assignment to `window.x` is made on the first line - `3`. On the call to `foo.baz.bar()`, `this` points to `foo.baz`, within whose scope the value of `x` is `1`.
 
 However, I got different results when I copy and paste the codes into an `foo.js` file and then execute it with `node foo.js`. Outputs become `undefined` and `1`.
 
-Even more confusingly, when I execute `node` to start the interpreter in an interactive mode, and key-in the codes line by line, I got `3` and `1`. I know nothing about the V8 engine, and I have absolutely no idea how to explain this.
+Even more confusingly, when I execute `node` to start the interpreter in an interactive mode, and key-in the codes line by line, I got `3` and `1`. I know nothing about node or the V8 engine, and I have absolutely no idea how to explain this.
 
 ### Ex. 5
 
@@ -112,13 +113,13 @@ Output is `'object'`.
 
 ### tournament result prediction
 
-The tournament can be considered as a binary tree, where node `i` represents the winner of its children. Each node of the tree is a set of key-value pairs, where the key is the name of a team, and the value is a probability. To be more specific, `tree[i][t]` represents the probability of team `t` being present at node `i`.
+The tournament can be considered as a binary tree, where node `i` represents the winner of its children. Each node of the tree `tree[i]` is a set of key-value pairs, where the key is the name of a team, and the value is a probability. To be more specific, `tree[i][t]` represents the probability of team `t` being present at node `i`.
 
-Initially all the 16 teams are located at leaves. The algorithm calculates round by round, bottom-up the value of `tree[i][t]`: for all the pair of teams `l` from `tree[2*i+1]` and `r` from `tree[2*i+2]`, calculate the probability of `l` winning against `r` in a single match, and then multiply it with the probability of the match between them to happen (which should be `tree[2*i+1][l] * tree[2*i+2][r]`), result of which is added to `tree[i][l]`.
+Initially all the 16 teams are located at leaves. The algorithm uses dynamic programming to calculate round by round, bottom-up the value of `tree[i][t]`: for all the pair of teams `l` from `tree[2*i+1]` and `r` from `tree[2*i+2]`, calculate the probability of `l` winning against or lose to `r` in a single match, and then multiply them with the probability of the match between the two teams to happen (which should be `tree[2*i+1][l] * tree[2*i+2][r]`), results of which are added to `tree[i][l]` and `tree[i][r]` respectively.
 
-Now `tree[0]` is all we want.
+`tree[0]` is all we want.
 
-Tests are written, located in `test()`, hereinafter the same.
+Tests are written to verify the correctness of the implementation, hereinafter the same.
 
 ### overloaded search
 
