@@ -98,9 +98,9 @@ function test(){
 	var strength = 	(function(){
 		var v = {};
 		teams.forEach(function(e){
-			v[e] = 1;//Math.random();
+			v[e] = 1;
 		});
-		v['Switzerland']=2;
+		v[teams[0]] = 2;
 		return v;
 	})();
 	function padding(str, length){
@@ -128,3 +128,5 @@ function test(){
 	});
 	console.log(padding("total", maxLength) + '\t\t' + total.toFixed(4));
 }
+
+test(); //expecting the first team to be 0.1975
