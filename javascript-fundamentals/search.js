@@ -25,7 +25,7 @@ function search(students, query){
 		}
 	})[typeof query];
 	if(!check)
-		return "Error: unknown type of query";
+		throw "Error: unknown type of query";
 
 
 	var result = [];

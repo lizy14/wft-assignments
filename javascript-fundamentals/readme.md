@@ -79,7 +79,6 @@ Output is `'function'`. The interpreter sees the function declaration `function 
 		baz: {
 			x: 1,
 			bar: function(){
-				debugger;
 				return this.x;
 			}
 		}
@@ -129,4 +128,14 @@ After choosing the proper version of `check`, a sequential search is performed, 
 
 ## bonus
 
-// TODO
+### diff
+
+To return elements in `b` but not in `a`, a `map` mapping from names to boolean values is maintained. `a[name]` represents whether or not a student with the name of `name` is in `a`.
+
+The algorithm first iterates over `a`, remembering everyone it meets. Then it iterates over `b` and checks for everyone if he or she has been met before.
+
+### sort
+
+Standard textbook implementation of bubble sort, insertion sort and selection sort. A wrapper function taking arguments the array to be sorted, the name of a sorting algorithm and a comparing function is provided for convenience of testing.
+
+EOF
