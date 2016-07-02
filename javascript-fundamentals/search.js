@@ -1,15 +1,19 @@
+/*
+
+Author: Zhaoyang Li, lizy14@yeah.net
+Date: 2016-07-02
+
+*/
+
 function search(students, query){
-	var isValid;
-	if(typeof query === 'number'){
-		isValid = function(student, query){
+	var isValid=({
+		'number': function(student, query){
 			return student.age === query;
-		}
-	}else if(typeof query === 'string'){
-		isValid = function(student, query){
+		},
+		'string': function(student, query){
 			return student.name === query;
-		}
-	}else if(typeof query === 'object'){
-		isValid = function(student, query){
+		},
+		'object': function(student, query){
 			for (var property in query) {
 				if (query.hasOwnProperty(property)){
 					if(student[property] !== query[property]){
@@ -19,13 +23,19 @@ function search(students, query){
 			}
 			return true;
 		}
-	}
+	})[typeof query];
+	if(!isValid)
+		return "Error: unknown type of query";
+
+
 	var result = [];
 	students.forEach(function(student){
 		if(isValid(student, query)){
 			result.push(student);
 		}
 	});
+
+
 	if(result.length === 0){
 		return false;
 	}
@@ -34,6 +44,8 @@ function search(students, query){
 	}
 	return result;
 }
+
+
 
 function test(){
 	var students = [{

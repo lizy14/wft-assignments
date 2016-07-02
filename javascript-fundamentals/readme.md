@@ -4,3 +4,9 @@ The tournament can be considered as a binary tree, where node `i` represents the
 Initially all the 16 teams are located at leaves. The algorithm calculates round by round, bottom-up the value of `tree[i][t]`: for all the pair of teams `l` from `tree[2*i+1]` and `r` from `tree[2*i+2]`, calculate the probability of `l` winning against `r` in a single match, and then multiply it with the probability of the match between them to happen (which should be `tree[2*i+1][l] * tree[2*i+2][r]`), result of which is added to `tree[i][l]`.
 
 Now `tree[0]` is all we want.
+
+## overloaded search
+
+A function with the name of `isValid` is defined to check if an element satisfies the query. Its implementation is dependent on type of the query.
+
+After choosing the proper version of `isValid`, a sequential search is performed, calling `isValid` on each element to decide whether or not it should be in the result set.
