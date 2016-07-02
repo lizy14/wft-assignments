@@ -13,7 +13,7 @@
 
 Output is `'undefined'`.
 
-Inside the call to `arguments[0]`, `this` points to some mysterious object (discussed below), where there is nothing in the name of `num`.
+Inside the call to `arguments[0]`, `this` points to some mysterious object (discussed below), where there is nothing by the name of `num`.
 
 
 #### Variant 1:  
@@ -92,11 +92,36 @@ Outputs are `3` and `1`.
 
 On the call to `go()`, `this` inside the function `bar` points to the global object `window`, who is the caller. The assignment to `window.x` is made on the first line - `3`. On the call to `foo.baz.bar()`, `this` points to `foo.baz`, within whose scope the value of `x` is `1`.
 
-However, I got different results when I copy and paste the codes into an `foo.js` file and then execute it with `node foo.js`. Outputs become `undefined` and `1`.
+#### remarks
 
-Even more confusingly, when I execute `node` to start the interpreter in an interactive mode, and key-in the codes line by line, I got `3` and `1`. I know nothing about node or the V8 engine, and I have absolutely no idea how to explain this.
+I got different results when I copy and paste the codes into an `foo.js` file and then execute it with `$ node foo.js`. Outputs become `undefined` and `1`.
+
+Even more confusingly, when I execute `$ node` to start the interpreter in an interactive mode, and key-in the codes line by line, I got `3` and `1`. I don't know much about node or the V8 engine, and I have no idea how to explain this.
+
+Update:
+
+I posted my doubt to the course's QQ group, where the teaching assistant Mr. Zhuang Tianyi suggested replacing the first line `var x = 3;` with `global.x = 3;`. Then `$ node foo.js` gives `3` and `1`.
+
+I looked up [Node.js documentation](https://nodejs.org/api/globals.html#globals_global) and found the following:
+
+> In browsers, the top-level scope is the global scope. That means that in browsers if you're in the global scope `var something` will define a global variable. In Node.js this is different. The top-level scope is not the global scope; `var something` inside an Node.js module will be local to that module.
+
+That explains everything.
+
 
 ### Ex. 5
+
+	function aaa(){
+		return
+		{
+			test: 1
+		};
+	}
+	console.log(typeof aaa());
+
+Output is `'undefined'`. In JavaScript, a statement can end with either a semicolon or an end-of-line character, meaning that `return` is a statement and `{test: 1};` is another one. So `aaa` returns nothing.
+
+#### Variant
 
 	function aaa(){
 		return {
@@ -105,9 +130,7 @@ Even more confusingly, when I execute `node` to start the interpreter in an inte
 	}
 	console.log(typeof aaa());
 
-Output is `'object'`.
-
-`aaa()` returns `{test: 1}`, which with no doubt is an object.
+Output is the expected `'object'`.
 
 ## advanced
 
@@ -123,7 +146,7 @@ Tests are written to verify the correctness of the implementation, hereinafter t
 
 ### overloaded search
 
-A function with by name of `check` is defined to check if an element satisfies the query. Its implementation is dependent on type of the query.
+A function by the name of `check` is defined to check if an element satisfies the query. Its implementation is dependent on the type of the query.
 
 After choosing the proper version of `check`, a sequential search is performed, calling `check` on each element to decide whether or not it should be in the result set.
 
