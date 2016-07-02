@@ -6,7 +6,7 @@ Date: 2016-07-02
 */
 
 function search(students, query){
-	var isValid=({
+	var check=({
 		'number': function(student, query){
 			return student.age === query;
 		},
@@ -24,13 +24,13 @@ function search(students, query){
 			return true;
 		}
 	})[typeof query];
-	if(!isValid)
+	if(!check)
 		return "Error: unknown type of query";
 
 
 	var result = [];
 	students.forEach(function(student){
-		if(isValid(student, query)){
+		if(check(student, query)){
 			result.push(student);
 		}
 	});
