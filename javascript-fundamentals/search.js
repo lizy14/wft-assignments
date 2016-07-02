@@ -24,6 +24,7 @@ function search(students, query){
 			return true;
 		}
 	})[typeof query];
+	
 	if(!check)
 		throw "Error: unknown type of query";
 

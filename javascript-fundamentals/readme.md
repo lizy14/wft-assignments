@@ -123,7 +123,7 @@ Tests are written to verify the correctness of the implementation, hereinafter t
 
 ### overloaded search
 
-A function with the name of `check` is defined to check if an element satisfies the query. Its implementation is dependent on type of the query.
+A function with by name of `check` is defined to check if an element satisfies the query. Its implementation is dependent on type of the query.
 
 After choosing the proper version of `check`, a sequential search is performed, calling `check` on each element to decide whether or not it should be in the result set.
 
@@ -131,7 +131,7 @@ After choosing the proper version of `check`, a sequential search is performed, 
 
 ### diff
 
-To return elements in `b` but not in `a`, a `map` mapping from names to boolean values is maintained. `a[name]` represents whether or not a student with the name of `name` is in `a`.
+To return elements in `b` but not in `a`, a `map` mapping from names to boolean values is maintained. `a[name]` represents whether or not a student by the name of `name` is in `a`.
 
 The algorithm first iterates over `a`, remembering everyone it meets. Then it iterates over `b` and checks for everyone if he or she has been met before.
 

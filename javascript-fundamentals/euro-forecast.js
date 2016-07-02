@@ -36,17 +36,17 @@ var teams = [
 
 function forecast(strength, team){
 	function range(n){ //[0, n)
-    var i;
-    var arr=[];
-    for(i=0; i<n; i++){
-        arr.push(i);
-    }
-    return arr;
+		var i;
+		var arr=[];
+		for(i=0; i<n; i++){
+			arr.push(i);
+		}
+		return arr;
 	}
 	function forTeams(object, callback){
 		for (var property in object) {
 			if (object.hasOwnProperty(property)) {
-					callback(property);
+				callback(property);
 			}
 		}
 	}
