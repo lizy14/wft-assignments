@@ -4,13 +4,13 @@ Author: Zhaoyang Li, lizy14@yeah.net
 Date: 2016-07-02
 
 */
-function range(n){ //[0, n)
-	var i;
-	var arr=[];
-	for(i=0; i<n; i++){
-			arr.push(i);
+function range(m){ //[0, m)
+	var j;
+	var a=[];
+	for(j=0; j<m; j++){
+			a.push(j);
 	}
-	return arr;
+	return a;
 }
 
 //wrapper function for sorting algorithms
@@ -141,6 +141,6 @@ function test(){
 			console.log(check_result(sort(arr, al, le), le));
 		})
 	});
-};
+}
 
 test();
