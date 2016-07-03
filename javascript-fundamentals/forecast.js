@@ -43,12 +43,19 @@ function forecast(strength, team){
 		}
 		return arr;
 	}
-	function forTeams(object, callback){
+	function forTeams(object, found){
 		for (var property in object) {
 			if (object.hasOwnProperty(property)) {
-				callback(property);
+				found(property);
 			}
 		}
+	}
+	function singleMatch(a, b){
+		//probability of a winning against b
+		return (
+			strength[a] + strength[b] === 0 ?
+			0.5: strength[a] / (strength[a] + strength[b])
+		);
 	}
 
 
@@ -68,10 +75,7 @@ function forecast(strength, team){
 		tree[i] = {};
 		var left    = teams[2*i + 1 - 15];
 		var right   = teams[2*i + 2 - 15];
-		var leftWin = (
-			strength[left] + strength[right] === 0 ?
-			0.5: strength[left] / (strength[left] + strength[right])
-		);
+		var leftWin = singleMatch(left, right);
 		tree[i][left]  = leftWin;
 		tree[i][right] = 1 - leftWin;
 	});
@@ -88,10 +92,7 @@ function forecast(strength, team){
 				forTeams(rightNode, function(r){
 					// team names l vs r
 					var meet = leftNode[l] * rightNode[r];
-					var leftWin = (
-						strength[l] + strength[r] === 0?
-						0.5: strength[l] / (strength[l] + strength[r])
-					);
+					var leftWin = singleMatch(l, r);
 					if(!(tree[i][l]))
 						tree[i][l] = 0;
 					if(!(tree[i][r]))
