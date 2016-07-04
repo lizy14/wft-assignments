@@ -64,13 +64,16 @@ $ = function(selector){
 			result.push(elements[i]);
 		}
 
+		if(result.length === 0){
+			return null;
+		}
 		if(result.length === 1){
 			return result[0];
 		}
 		return result;
-		
+
 	}catch(err){
 		console.error(err);
-		return [];
+		return null;
 	}
 }

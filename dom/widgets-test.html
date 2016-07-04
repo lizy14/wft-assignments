@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>widgets tests</title>
+	<script type="text/javascript" src="source\backToTop.js"></script>
+</head>
+<body>
+	<style>
+		div{
+			text-shadow: #666 1px 1px;
+			font-size: 50px;
+		}
+	</style>
+	<div id="foo"></div>
+	<script>
+		(function(){
+			var dom = document.getElementById('foo');
+			var i;
+			var html = '';
+			for(i=0; i<=127; i++)
+				html += '<div style="color:rgb('+(i*2)+','+(i*2)+','+(i*2)+')">#' + i + "</div>";
+			dom.innerHTML = html;
+		})();
+	</script>
+
+	<script>
+		BackToTop.init({
+			RightUp: true
+		});
+	</script>
+</body>
+</html>
