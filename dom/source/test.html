@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>dollar tests</title>
+	<script type="text/javascript" src="dollar.js"></script>
+</head>
+<body>
+	<h1 id="heading" class="red">Heading level 1</h1>
+	<p id="first" class="blue">Paragraph #1</p>
+	<p id="second" class="red">Paragraph #2</p>
+	<style>
+		.red{color:red;}
+		.blue{color:blue;}
+		#foobar{background-color:green;}
+		#heading{background-color:purple;}
+	</style>
+	<script>
+		(function(){
+			console.log($('h1').attr('id'));
+			$('h1').attr('id','foobar');
+			console.log($('h1').attr('id'));
+
+			$('.red')[1].attr('id', 'heading');
+		})();
+	</script>
+</body>
+</html>
