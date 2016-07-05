@@ -1,5 +1,10 @@
 # DOM Programming
 
+Zhaoyang Li,
+student ID 2014013432,
+email addr. lizy14@mails.tsinghua.edu.cn
+
+
 ## $
 
 [demo](http://static.nullspace.cn/wft-assignments/dom/dollar-test.html)
@@ -70,7 +75,11 @@ Usage: include `modal.js`, `modal.css` and write
 		closeKey: 87
 	});
 
-Appends a `div.modal-container` element to `body` and adds listeners to `keyup`,  `mousedown` `mouseup` `mouseout` `mousemove` events.
+Appends a `div.modal-container` element to `body`, as an overlay to contain `div.modal-dialog` where content and the OK button resides.
+
+`keyup` listener handles key input. Dragging are handled by listening to `mousedown` `mouseup` `mousemove` events. The event handler remembers mouse coordinates from the last event, to calculate mouse movement and then update `top` and `left` properties of `div.modal-dialog`.
+
+
 
 ## analyzing a slider
 

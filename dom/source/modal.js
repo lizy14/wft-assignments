@@ -31,10 +31,10 @@ var Modal = {
 	_dragging: false,
 	_lastX: -1,
 	_lastY: -1,
+
 	_eventHandler: function(ev){
 
 		var event = ev? ev: window.event;
-console.log(event.type)
 		var key = event.keyCode;
 		if(key === Modal._key){
 			Modal.cancel();
@@ -50,16 +50,19 @@ console.log(event.type)
 					case 'mousemove':
 						if(Modal._dragging){
 							var newTop =
-								parseInt(Modal._mouseHotArea.style.top.slice(0,-2) || 0) + (y - Modal._lastY) + 'px';
+								parseInt(Modal._mouseHotArea.style.top.slice(0,-2) || 0)
+								+ (y - Modal._lastY) + 'px';
 							Modal._mouseHotArea.style.top	= newTop;
 							var newLeft =
-								parseInt(Modal._mouseHotArea.style.left.slice(0,-2) || 0) + (x - Modal._lastX) + 'px';
+								parseInt(Modal._mouseHotArea.style.left.slice(0,-2) || 0)
+								+ (x - Modal._lastX) + 'px';
 							Modal._mouseHotArea.style.left	= newLeft;
 						}
 						break;
 					case 'mousedown':
 						var rect = Modal._mouseHotArea.getBoundingClientRect();
-						if(x > rect.left && x < rect.right && y > rect.top && y < rect.bottom)
+						if(x > rect.left && x < rect.right
+							&& y > rect.top && y < rect.bottom)
 							Modal._dragging = true;
 						break;
 					case 'mouseup':
@@ -96,7 +99,7 @@ console.log(event.type)
 			Modal._dom.onmousedown = Modal._eventHandler;
 			Modal._dom.onmouseup = Modal._eventHandler;
 			Modal._dom.onmousemove = Modal._eventHandler;
-			document.onmouseout = Modal._eventHandler;
+			//Modal._dom.onmouseout = Modal._eventHandler;
 			document.onkeyup = Modal._eventHandler;
 		}
 
