@@ -31,6 +31,7 @@ var Modal = {
 	_dragging: false,
 	_lastX: -1,
 	_lastY: -1,
+
 	_eventHandler: function(ev){
 
 		var event = ev? ev: window.event;
@@ -49,19 +50,28 @@ var Modal = {
 					case 'mousemove':
 						if(Modal._dragging){
 							var newTop =
-								parseInt(Modal._mouseHotArea.style.top.slice(0,-2) || 0) + (y - Modal._lastY) + 'px';
+								parseInt(Modal._mouseHotArea.style.top.slice(0,-2) || 0)
+								+ (y - Modal._lastY) + 'px';
 							Modal._mouseHotArea.style.top	= newTop;
 							var newLeft =
-								parseInt(Modal._mouseHotArea.style.left.slice(0,-2) || 0) + (x - Modal._lastX) + 'px';
+								parseInt(Modal._mouseHotArea.style.left.slice(0,-2) || 0)
+								+ (x - Modal._lastX) + 'px';
 							Modal._mouseHotArea.style.left	= newLeft;
 						}
 						break;
 					case 'mousedown':
-						Modal._dragging = true;
+						var rect = Modal._mouseHotArea.getBoundingClientRect();
+						if(x > rect.left && x < rect.right
+							&& y > rect.top && y < rect.bottom)
+							Modal._dragging = true;
 						break;
 					case 'mouseup':
-					case 'mouseout':
 						Modal._dragging = false;
+						break;
+					case 'mouseout':
+						if(event.fromElement === Modal._dom){
+							Modal._dragging = false;
+						}
 						break;
 
 				}
@@ -77,8 +87,8 @@ var Modal = {
 			Modal._dom.style.display = 'none';
 			Modal._dom.innerHTML = ' \
 				<div class="modal-dialog"> \
-					<div id="modal-content"></div> \
-					<div class="modal-ok" onclick="Modal.cancel()">OK</div> \
+					<div id="modal-content" class="not-selectable"></div> \
+					<div class="modal-ok not-selectable" onclick="Modal.cancel()">OK</div> \
 				</div> \
 			';
 
@@ -86,10 +96,10 @@ var Modal = {
 
 			Modal._mouseHotArea = Modal._dom.children[0];
 
-			Modal._mouseHotArea.onmousedown = Modal._eventHandler;
-			Modal._mouseHotArea.onmouseup = Modal._eventHandler;
-			Modal._mouseHotArea.onmousemove = Modal._eventHandler;
-			Modal._mouseHotArea.onmouseout = Modal._eventHandler;
+			Modal._dom.onmousedown = Modal._eventHandler;
+			Modal._dom.onmouseup = Modal._eventHandler;
+			Modal._dom.onmousemove = Modal._eventHandler;
+			//Modal._dom.onmouseout = Modal._eventHandler;
 			document.onkeyup = Modal._eventHandler;
 		}
 

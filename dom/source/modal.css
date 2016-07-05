@@ -7,33 +7,41 @@ div.modal-container{
 	text-align:center;
 	z-index: 2333;
 	background-color: black;
-	background-color: rgba(0,0,0, .4)
+	background-color: rgba(0,0,0, .4);
 }
 
 div.modal-dialog{
 	margin: 10% auto;
 	width: 400px;
 	height: 200px;
-	background-color: #ccc;
+	background-color: #ddd;
 	border-top: 50px #666 solid;
 	border-radius: 10px;
 	position: relative;
 }
 div.modal-ok{
 	bottom: 0;
-	height: 40px;
+	height: 32px;
 	position: relative;
-	font-size: 30px;
+	font-size: 24px;
 	margin: auto 30%;
 	background-color: #aaa;
 	color: black;
+	border: #aaa 4px solid;
 }
 div.modal-ok:hover{
-	background-color: #ddd;
+	background-color: #ccc;
 }
 div#modal-content{
 	font-size: 50px;
 	color: black;
 	height: 150px;
 	overflow-y: scroll;
+}
+
+.not-selectable{
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;	
 }
