@@ -34,6 +34,7 @@ var Modal = {
 	_eventHandler: function(ev){
 
 		var event = ev? ev: window.event;
+console.log(event.type)
 		var key = event.keyCode;
 		if(key === Modal._key){
 			Modal.cancel();
@@ -57,11 +58,17 @@ var Modal = {
 						}
 						break;
 					case 'mousedown':
-						Modal._dragging = true;
+						var rect = Modal._mouseHotArea.getBoundingClientRect();
+						if(x > rect.left && x < rect.right && y > rect.top && y < rect.bottom)
+							Modal._dragging = true;
 						break;
 					case 'mouseup':
-					case 'mouseout':
 						Modal._dragging = false;
+						break;
+					case 'mouseout':
+						if(event.fromElement === Modal._dom){
+							Modal._dragging = false;
+						}
 						break;
 
 				}
@@ -77,8 +84,8 @@ var Modal = {
 			Modal._dom.style.display = 'none';
 			Modal._dom.innerHTML = ' \
 				<div class="modal-dialog"> \
-					<div id="modal-content"></div> \
-					<div class="modal-ok" onclick="Modal.cancel()">OK</div> \
+					<div id="modal-content" class="not-selectable"></div> \
+					<div class="modal-ok not-selectable" onclick="Modal.cancel()">OK</div> \
 				</div> \
 			';
 
@@ -86,10 +93,10 @@ var Modal = {
 
 			Modal._mouseHotArea = Modal._dom.children[0];
 
-			Modal._mouseHotArea.onmousedown = Modal._eventHandler;
-			Modal._mouseHotArea.onmouseup = Modal._eventHandler;
-			Modal._mouseHotArea.onmousemove = Modal._eventHandler;
-			Modal._mouseHotArea.onmouseout = Modal._eventHandler;
+			Modal._dom.onmousedown = Modal._eventHandler;
+			Modal._dom.onmouseup = Modal._eventHandler;
+			Modal._dom.onmousemove = Modal._eventHandler;
+			document.onmouseout = Modal._eventHandler;
 			document.onkeyup = Modal._eventHandler;
 		}
 

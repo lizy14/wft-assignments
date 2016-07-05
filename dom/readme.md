@@ -2,6 +2,8 @@
 
 ## $
 
+[demo](http://static.nullspace.cn/wft-assignments/dom/dollar-test.html)
+
 ### selector
 Query selector wrapper, supporting
 
@@ -27,6 +29,8 @@ Usage: include `dollar.js` and write
 Strictly speaking, internally it does nothing.
 
 ## widgets
+
+[demo](http://static.nullspace.cn/wft-assignments/dom/widgets-test.html)
 
 ### BackToTop
 
@@ -80,7 +84,7 @@ The page listens to many kinds of events. Remarkable ones are listed below:
 
 * on `touchmove` event, it moves the items;
 * on `touchend` event, it checks if the user intended to click, and initiates the navigation if true;
-* on `resize` events it updates the layout;
-* on `touchstart`, `transitionend` events it maintains some data structure.
+* on `resize` events, it updates the layout;
+* on `touchstart`, `transitionend` events, it maintains some data structures.
 
 Nothing done for bonus, \#EOF
