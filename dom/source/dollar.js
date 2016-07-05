@@ -47,7 +47,7 @@ $ = function(selector){
 
 		var elements;
 		if(selector[0] === '#'){
-			return document.getElementById(selector.slice(1));
+			elements = [document.getElementById(selector.slice(1))];
 		}else if(selector[0] === '.'){
 			//IE8 does not support getElementsByClassName
 			elements = document.querySelectorAll(selector);
