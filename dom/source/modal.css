@@ -28,6 +28,9 @@ div.modal-ok{
 	background-color: #aaa;
 	color: black;
 }
+div.modal-ok:hover{
+	background-color: #ddd;
+}
 div#modal-content{
 	font-size: 50px;
 	color: black;
