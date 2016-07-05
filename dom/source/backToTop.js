@@ -5,6 +5,20 @@ Date: 2016-07-04
 
 */
 
+
+/*
+
+Examples:
+
+BackToTop.init({
+	position: "TopLeft"
+});
+
+BackToTop.init({
+	position: {x: 100, y: 100}
+});
+
+*/
 var BackToTop = {
 	_dom : 'hello, world',
 	_y : 0, // animation
@@ -84,6 +98,7 @@ var BackToTop = {
 			} \
 		' ;
 
+		//ref: https://stackoverflow.com/questions/524696/how-to-create-a-style-tag-with-javascript
     var head = document.head || document.getElementsByTagName('head')[0];
     var style = document.createElement('style');
 
@@ -102,29 +117,25 @@ var BackToTop = {
 
 
 		var propertiesMap = {
-			'LeftUp'   : ['left',  'top'],
-			'LeftDown' : ['left',  'bottom'],
-			'RightUp'  : ['right', 'top'],
-			'RightDown': ['right', 'bottom']
+			'TopLeft'   : ['left',  'top'],
+			'BottomLeft' : ['left',  'bottom'],
+			'TopRight'  : ['right', 'top'],
+			'BottomRight': ['right', 'bottom']
 		};
 
 		var defaultMargin = "100px";
 
 		if(
-			typeof options === 'opject'
-			&& typeof options.x === 'number'
-			&& typeof options.y === 'number'
+			typeof options === 'object'
+			&& typeof options.position === 'object'
 		){
-			_dom.style.left = parseInt(options.x) + 'px';
-			_dom.style.top  = parseInt(options.y) + 'px';
-		}else{
-			for(var position in options){
-				var properties = propertiesMap[position];
-				if(typeof properties !== 'undefined'){
-					for(var i=0; i<properties.length; i++){
-						_dom.style[properties[i]] = defaultMargin;
-					}
-					break;
+			_dom.style.left = parseInt(options.position.x) + 'px';
+			_dom.style.top  = parseInt(options.position.y) + 'px';
+		}else if(typeof options.position === 'string'){
+			var properties = propertiesMap[options.position];
+			if(typeof properties !== 'undefined'){
+				for(var i=0; i<properties.length; i++){
+					_dom.style[properties[i]] = defaultMargin;
 				}
 			}
 		}
