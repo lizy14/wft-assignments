@@ -16,9 +16,7 @@ function _attr(name, value){
 		if(typeof value === 'undefined'){
 			return this[name];
 		}else{
-			if(typeof value === 'string'){
-				this[name] = value;
-			}
+			this[name] = value;
 			return;
 		}
 	}catch(err){

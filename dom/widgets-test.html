@@ -2,6 +2,8 @@
 <head>
 	<title>widgets tests</title>
 	<script type="text/javascript" src="source\backToTop.js"></script>
+	<script type="text/javascript" src="source\modal.js"></script>
+	<link rel="stylesheet" href="source\modal.css"/>
 </head>
 <body>
 	<style>
@@ -10,6 +12,9 @@
 			font-size: 50px;
 		}
 	</style>
+	<div><a onclick="Modal.alert({content:'drag me!'})">click ME to see a draggable alert</a></div>
+	<div><a onclick="Modal.alert({content:'press W to close me!',draggable:false,closeKey:87})">click ME to see a indraggable alert</a></div>
+	<div>scroll down to see BackToTop</div>
 	<div id="foo"></div>
 	<script>
 		(function(){
@@ -17,7 +22,7 @@
 			var i;
 			var html = '';
 			for(i=0; i<=127; i++)
-				html += '<div style="color:rgb('+(i*2)+','+(i*2)+','+(i*2)+')">#' + i + "</div>";
+				html += '<div style="color:rgb('+(i*2)+','+(i*2)+','+(i*2)+')">Line #' + i + "</div>";
 			dom.innerHTML = html;
 		})();
 	</script>

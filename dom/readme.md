@@ -13,13 +13,13 @@ Returns either `null`, or a single DOM element, or an array with 2 or more eleme
 
 Internally it calls browser's `querySelectorAll`, `getElementsByTagName`, `getElementById`.
 
-Tested on IE 8/9/10, Chrome 51, Firefox 47, hereinafter the same.
+Just include `dollar.js` and you're good to go. Tested on IE 8/9/10, Chrome 51, Firefox 47, hereinafter the same.
 
 ### attributes accessor
 
 Each element returned by the `$` selector has a `attr` method, allowing you to access or modify its attributes.
 
-Usage:
+Usage: include `dollar.js` and write
 
 	$('.foo').attr(attributeName);
 	$('#bar').attr(attributeName, newValue);
@@ -30,7 +30,7 @@ Strictly speaking, internally it does nothing.
 
 ### BackToTop
 
-Usage:
+Usage: include `backToTop.js` and write
 
 	BackToTop.init({
 		position: "TopLeft"
@@ -54,7 +54,7 @@ Features include
 
 ### Modal
 
-Usage:
+Usage: include `modal.js`, `modal.css` and write
 
 	Modal.alert('hello');
 	Modal.alert({
@@ -66,6 +66,7 @@ Usage:
 		closeKey: 87
 	});
 
+Appends a `div.modal-container` element to `body` and adds listeners to `keyup`,  `mousedown` `mouseup` `mouseout` `mousemove` events.
 
 ## analyzing a slider
 
