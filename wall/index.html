@@ -22,14 +22,16 @@
 	      <ul>
 	        <li class="message" transition="item" v-for="message in messages">
 						<div class="message-container">
-							<div class="avatar-container">
-								<img class="avatar avatar-loading" v-bind:src="message.headimgurl" onload="imageLoaded(this);"></img>
-							</div>
-							<div class="username-container">
-								<span class="username">{{message.nickname}}</span>
+							<div class="message-left">
+								<div class="avatar-container">
+									<img class="avatar avatar-loading" v-bind:src="message.headimgurl" onload="imageLoaded(this);"></img>
+								</div>
+								<div class="username-container">
+									{{message.nickname}}
+								</div>
 							</div>
 							<div class="content-container">
-								<span class="content">{{message.content}}</span>
+								{{message.content}}
 							</div>
 						</div>
 					</li>

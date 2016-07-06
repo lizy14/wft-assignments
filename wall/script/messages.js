@@ -23,7 +23,7 @@ Vue.transition('item', {
   },
 	afterLeave: function(){
     $('#messages-container').removeClass('moving');
-  }
+  },
 })
 
 function imageLoaded(el){
@@ -54,9 +54,11 @@ var timer = setInterval(function(){
 function test(interval){
 	setInterval(function(){
 		messageHandler({
-			'content': "Testing, " + (new Date()).valueOf(),
+			'content': "I am a message, " + ((new Date()).valueOf()/100).toFixed(20),
 			'headimgurl': 'https://avatars2.githubusercontent.com/u/9985286',
 			'nickname': 'Zhaoyang'
 		});
 	}, interval || 1000);
 }
+
+test();
