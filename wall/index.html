@@ -18,10 +18,10 @@
     <div class="page-container">
       <header>
       </header>
-			<article id="messages-container" class="messages-container">
+			<article id="messages-container">
 	      <ul>
 	        <li class="message" transition="item" v-for="message in messages">
-						<div class="message-container">
+						<div class="message-container message-admin-{{message.isAdmin}}">
 							<div class="message-left">
 								<div class="avatar-container">
 									<img class="avatar avatar-loading" v-bind:src="message.headimgurl" onload="imageLoaded(this);"></img>
@@ -37,6 +37,27 @@
 					</li>
 	      </ul>
 	    </article>
+
+			<article id="admin-container">
+				<ul>
+					<li class="message admin-message" transition="admin" v-for="message in admin">
+						<div class="message-container message-admin">
+							<div class="message-left">
+								<div class="avatar-container">
+									<img class="avatar avatar-loading" v-bind:src="message.headimgurl" onload="imageLoaded(this);"></img>
+								</div>
+								<div class="username-container">
+									{{message.nickname}}
+								</div>
+							</div>
+							<div class="content-container">
+								{{message.content}}
+							</div>
+						</div>
+					</li>
+				</ul>
+			</article>
+
       <footer>
 				<marquee class="bulletin">
 					/*I am a bulletin*/

@@ -3,9 +3,10 @@
 var numberOfMessages = 3; //maxium number of messages to be displayed
 
 var messagesManager = new Vue({
-  el: '#messages-container',
+  el: '.page-container',
   data: {
-    messages: []
+    messages: [],
+		admin: []
   },
   methods: {
     newMessage: function(message){
@@ -18,13 +19,13 @@ var messagesManager = new Vue({
 });
 
 Vue.transition('item', {
-  beforeLeave: function(){
-    $('#messages-container').addClass('moving');
+	beforeLeave: function(el){
+		$('#messages-container').addClass('moving');
   },
-	afterLeave: function(){
-    $('#messages-container').removeClass('moving');
+	afterLeave: function(el){
+		$('#messages-container').removeClass('moving');
   },
-})
+});
 
 function imageLoaded(el){
 	$(el).removeClass('avatar-loading');
@@ -32,12 +33,37 @@ function imageLoaded(el){
 
 var buffer = []; //first in, first out
 
+var adminTimer = null;
+
 function messageHandler(message){
 	if(typeof message.handimgurl !== 'undefined' && typeof message.headimgurl === 'undefined'){
 		message.headimgurl = message.handimgurl;
 	}
+	if(message.isAdmin){
+		message.headimgurl = "image/admin.jpg";
+	}
+
 	console.log(message);
-	buffer.push(message);
+
+	if(message.isAdmin === true){
+		function clearAdmin(){
+			while(messagesManager.admin.pop());
+		}
+		if(adminTimer !== null){
+			clearTimeout(adminTimer);
+		}
+		adminTimer = setTimeout(function(){
+				clearAdmin();
+				adminTimer = null;
+		}, 10 * 1000);
+		clearAdmin();
+		setTimeout(function(){
+			messagesManager.admin.push(message);
+		}, 400);
+
+	}else{
+		buffer.push(message);
+	}
 }
 
 var timer = setInterval(function(){
@@ -48,17 +74,32 @@ var timer = setInterval(function(){
 		console.warn("too many incoming messages");
 		buffer = buffer.slice(-10);
 	}
-}, 400); //not to be less than 300ms, which is decided by CSS trasition
+}, 400);
 
 
 function test(interval){
+	setTimeout(function(){
+		messageHandler({
+			'content': "I am the administrator",
+			'nickname': 'ADMIN',
+			'isAdmin': true
+		});
+	}, 4000);
+	setTimeout(function(){
+		messageHandler({
+			'content': "I am another administrator",
+			'nickname': 'Justin',
+			'isAdmin': true
+		});
+	}, 8000);
 	setInterval(function(){
 		messageHandler({
 			'content': "I am a message, " + ((new Date()).valueOf()/100).toFixed(20),
 			'headimgurl': 'https://avatars2.githubusercontent.com/u/9985286',
-			'nickname': 'Zhaoyang'
+			'nickname': 'Zhaoyang',
 		});
 	}, interval || 1000);
 }
 
-test();
+
+//test();
