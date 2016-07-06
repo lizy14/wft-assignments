@@ -4,72 +4,104 @@ body{
 	height: 100vh;
   overflow: hidden;
 	font-size: 2em;
+
 }
+
 .avatar-container{
 	position: relative;
-  float: left;
 	height: 100px;
-	width: 100px;
-	margin-right: 1em;
-	margin-bottom: 100px;
-	background-image: url(http://wall.ssast.org/img/user.gif);
+	background-image: url(../image/unknown.gif);
 	background-size: cover;
+	display: flex;
+	margin: 0 50px;
+	width: 100px;
 }
 .avatar{
 	height: 100px;
 	width: 100px;
-	transition: opacity 1s;
+	transition: opacity .3s;
 }
 .avatar-loading{
 	opacity: 0;
 }
 .content-container{
-	height: 3.6em;
-	line-height: 1.6em;
 	overflow: hidden;
-	margin-top: 0.5em;
+	font-size: calc(((100vh - 80px) / 3 - 60px) * .3);
+	display: flex;
+	height: 100%;
+	align-items: center;
+	height: 100%;
+}
+.message-left{
+	width: 200px;
+	margin-bottom: 200px;
+	float: left;
+	margin-right: 1em;
+	margin-top: calc(((100vh - 80px) / 3 - 180px) / 2);
 }
 .message{
 	color: white;
 	overflow: hidden;
 	padding: 10px;
 	list-style-type: none;
-	height:200px;
-	background-color: rgba(0,0,0,.2);
-	border: 10px #233 solid;
+	height: calc((100vh - 20px) / 3 - 80px);
+	background-color: #152828;
+	margin: 30px;
+	white-space: nowrap;
+}
+.username-container{
+	font-size: 1em;
+	width: 100%;
+	display:block;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
-.username{
-	font-size: 1em;
-}
-.content{
-	font-size: 1.5em;
-}
 .bulletin{
 	position: absolute;
   bottom: 0px;
   margin-bottom: .5em;
   font-size: 1.2em;
 }
+
 /*transitions*/
-.item-transition{
+.item-transition, .admin-transition{
 	transition-property: all;
 	transition-duration: .3s;
 }
-.item-enter{
+.item-enter, .admin-enter{
 	margin-left: 100px;
   opacity: 0;
 }
-.item-leave{
+.item-leave, .admin-leave{
 	margin-left: -100px;
 	opacity: 0;
 }
 .moving{
-	margin-top: -240px;
-	transition: margin-top .3s
+	margin-top: calc((80px - 100vh) / 3 + 12px);
+	transition: margin-top .3s;
 }
-
 
 ul{
 	padding-left:0;
+}
+
+#messages-container{
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+#admin-container{
+	z-index: 2333;
+	position: absolute;
+	width: 100%;
+	top:0;
+}
+.admin-message{
+	margin-bottom:0px;
+	background-color: #394b4b;
+	border-radius: 20px;
+	transform: translateX(-10px) rotateZ(-3deg);
 }
