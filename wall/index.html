@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="wall">
+
+  <head>
+    <title>Wall</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+
+		<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+		<script src="https://cdn.bootcss.com/socket.io/1.4.8/socket.io.js"></script>
+		<script src="https://cdn.bootcss.com/vue/1.0.6/vue.js"></script>
+
+
+  </head>
+
+  <body>
+    <div class="page-container">
+      <header>
+      </header>
+			<article id="messages-container" class="messages-container">
+	      <ul>
+	        <li class="message" transition="item" v-for="message in messages">
+						<div class="message-container">
+							<div class="avatar-container">
+								<img class="avatar avatar-loading" v-bind:src="message.headimgurl" onload="imageLoaded(this);"></img>
+							</div>
+							<div class="username-container">
+								<span class="username">{{message.nickname}}</span>
+							</div>
+							<div class="content-container">
+								<span class="content">{{message.content}}</span>
+							</div>
+						</div>
+					</li>
+	      </ul>
+	    </article>
+      <footer>
+				<marquee class="bulletin">
+					/*I am a bulletin*/
+				</marquee>
+  		</footer>
+		</div>
+
+		<script src="script/messages.js"></script>
+		<script src="script/network.js"></script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+body{
+	background: #233;
+	color: white;
+	height: 100vh;
+  overflow: hidden;
+	font-size: 2em;
+}
+.avatar-container{
+	position: relative;
+  float: left;
+	height: 100px;
+	width: 100px;
+	margin-right: 1em;
+	margin-bottom: 100px;
+	background-image: url(http://wall.ssast.org/img/user.gif);
+	background-size: cover;
+}
+.avatar{
+	height: 100px;
+	width: 100px;
+	transition: opacity 1s;
+}
+.avatar-loading{
+	opacity: 0;
+}
+.content-container{
+	height: 3.6em;
+	line-height: 1.6em;
+	overflow: hidden;
+	margin-top: 0.5em;
+}
+.message{
+	color: white;
+	overflow: hidden;
+	padding: 10px;
+	list-style-type: none;
+	height:200px;
+	background-color: rgba(0,0,0,.2);
+	border: 10px #233 solid;
+}
+
+.username{
+	font-size: 1em;
+}
+.content{
+	font-size: 1.5em;
+}
+.bulletin{
+	position: absolute;
+  bottom: 0px;
+  margin-bottom: .5em;
+  font-size: 1.2em;
+}
+/*transitions*/
+.item-transition{
+	transition-property: all;
+	transition-duration: .3s;
+}
+.item-enter{
+	margin-left: 100px;
+  opacity: 0;
+}
+.item-leave{
+	margin-left: -100px;
+	opacity: 0;
+}
+.moving{
+	margin-top: -240px;
+	transition: margin-top .3s
+}
+
+
+ul{
+	padding-left:0;
+}
