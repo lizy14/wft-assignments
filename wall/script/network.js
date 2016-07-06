@@ -1,19 +1,18 @@
 'use strict';
 
-var numberOfMessages = 3;
 var getUrl = "https://wall.cgcgbcbc.com/api/messages?num=" + numberOfMessages;
-var socketUrl = "https://wall.cgcgbcbc.com"
+var socketUrl = "https://wall.cgcgbcbc.com";
 
 function getOldMessages(callback){
-	$.get(getUrl, function(data){
-		data.forEach(function(i){
-			callback(i);
+	fetch(getUrl)
+		.then(function(data){
+			return data.json();
+		})
+		.then(function(data){
+			data.reverse().forEach(function(item){
+				callback(item);
+			});
 		});
-	});
-}
-
-function messageHandler(message){
-	console.log(message);
 }
 
 var socket = io.connect(socketUrl);
