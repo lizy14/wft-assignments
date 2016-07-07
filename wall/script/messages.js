@@ -6,28 +6,28 @@ var numberOfMessages = 3;
 $('#message-li-admin').html($('#message-li').html());
 
 var messagesManager = new Vue({
-  el: '.page-container',
-  data: {
-    messages: [],
+	el: '.page-container',
+	data: {
+		messages: [],
 		admin: []
-  },
-  methods: {
-    newMessage: function(message){
+	},
+	methods: {
+		newMessage: function(message){
 			messagesManager.messages.push(message);
 			if(messagesManager.messages.length > numberOfMessages){
 					messagesManager.messages.shift();
 			}
 		}
-  }
+	}
 });
 
 Vue.transition('item', {
 	beforeLeave: function(el){
 		$('#ordinary-messages-container').addClass('moving');
-  },
+	},
 	afterLeave: function(el){
 		$('#ordinary-messages-container').removeClass('moving');
-  },
+	},
 });
 
 function imageLoaded(el){

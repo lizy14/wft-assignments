@@ -18,12 +18,12 @@ function getOldMessages(callback){
 var socket = io.connect(socketIoUrl);
 
 socket.on('connect', function () {
-  console.log('connected');
+	console.log('connected');
 });
 
 socket.on('disconnect', function() {
 	console.log('disconnected');
-  location.reload();
+	location.reload();
 });
 
 socket.on('new message', function(message){
