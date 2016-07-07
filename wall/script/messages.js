@@ -83,21 +83,21 @@ var timer = setInterval(function(){
 function test(interval){
 	setTimeout(function(){
 		messageHandler({
-			'content': "I am the administrator",
+			'content': "I am the administrator, " + ((new Date()).toLocaleString()),
 			'nickname': 'ADMIN',
 			'isAdmin': true
 		});
 	}, 4000);
 	setTimeout(function(){
 		messageHandler({
-			'content': "I am another administrator",
+			'content': "I am another administrator, " + ((new Date()).toLocaleString()),
 			'nickname': 'Justin',
 			'isAdmin': true
 		});
 	}, 8000);
 	setInterval(function(){
 		messageHandler({
-			'content': "/::)\u2764\uFE0F I am a message, " + ((new Date()).valueOf()/100).toFixed(20),
+			'content': "/::)\u2764\uFE0F I am a message, " + ((new Date()).toLocaleString()),
 			'headimgurl': 'https://avatars2.githubusercontent.com/u/9985286',
 			'nickname': 'Zhaoyang',
 		});
