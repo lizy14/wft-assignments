@@ -59,8 +59,10 @@ function messageHandler(message){
 				clearAdmin();
 				adminTimer = null;
 		}, 10 * 1000);
+
 		clearAdmin();
 		setTimeout(function(){
+			clearAdmin();
 			messagesManager.admin.push(message);
 		}, 400);
 
