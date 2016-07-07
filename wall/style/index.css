@@ -33,7 +33,6 @@ body{
 }
 .content-container{
 	font-size: calc(((100vh - 80px) / 3 - 60px) * .3);
-	word-break: break-all;
   white-space: normal;
 	margin: auto 0;
 }
