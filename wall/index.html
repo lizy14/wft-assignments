@@ -10,7 +10,7 @@
 		<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
 		<script src="https://cdn.bootcss.com/socket.io/1.4.8/socket.io.js"></script>
 		<script src="https://cdn.bootcss.com/vue/1.0.6/vue.js"></script>
-
+		<script src="https://twemoji.maxcdn.com/twemoji.min.js"></script>
 
   </head>
 
@@ -31,7 +31,7 @@
 								</div>
 							</div>
 							<div class="content-container">
-								{{message.content}}
+								{{{message.content}}}
 							</div>
 						</div>
 					</li>
@@ -65,6 +65,7 @@
   		</footer>
 		</div>
 
+		<script src="script/wechatface.js"></script>
 		<script src="script/messages.js"></script>
 		<script src="script/network.js"></script>
   </body>
