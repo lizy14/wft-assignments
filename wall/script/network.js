@@ -1,10 +1,10 @@
 'use strict';
 
-var getUrl = "https://wall.cgcgbcbc.com/api/messages?num=" + numberOfMessages;
-var socketUrl = "https://wall.cgcgbcbc.com";
+var oldMessagesUrl = "https://wall.cgcgbcbc.com/api/messages?num=3";
+var socketIoUrl = "https://wall.cgcgbcbc.com";
 
 function getOldMessages(callback){
-	fetch(getUrl)
+	fetch(oldMessagesUrl)
 		.then(function(data){
 			return data.json();
 		})
@@ -15,7 +15,7 @@ function getOldMessages(callback){
 		});
 }
 
-var socket = io.connect(socketUrl);
+var socket = io.connect(socketIoUrl);
 
 socket.on('connect', function () {
   console.log('connected');

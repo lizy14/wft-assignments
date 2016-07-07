@@ -16,56 +16,34 @@
 
   <body>
     <div class="page-container">
-      <header>
-      </header>
-			<article id="messages-container">
+			<section class="messages-container" id="ordinary-messages-container">
 	      <ul>
-	        <li class="message" transition="item" v-for="message in messages">
-						<div class="message-container message-admin-{{message.isAdmin}}">
+	        <li class="message" transition="item" v-for="message in messages" id="message-li">
+						<article class="message-container">
 							<div class="message-left">
 								<div class="avatar-container">
 									<img class="avatar avatar-loading" v-bind:src="message.headimgurl" onload="imageLoaded(this);"></img>
 								</div>
-								<div class="username-container">
-									{{message.nickname}}
-								</div>
+								<div class="username-container">{{message.nickname}}</div>
 							</div>
 							<div class="message-right">
-								<div class="content-container">
-									{{{message.content}}}
-								</div>
+								<div class="content-container">{{{message.content}}}</div>
 							</div>
-						</div>
+						</article>
 					</li>
 	      </ul>
-	    </article>
+	    </section>
 
-			<article id="admin-container">
+			<section class="messages-container" id="admin-messages-container">
 				<ul>
-					<li class="message admin-message" transition="admin" v-for="message in admin">
-						<div class="message-container message-admin">
-							<div class="message-left">
-								<div class="avatar-container">
-									<img class="avatar avatar-loading" v-bind:src="message.headimgurl" onload="imageLoaded(this);"></img>
-								</div>
-								<div class="username-container">
-									{{message.nickname}}
-								</div>
-							</div>
-							<div class="message-right">
-								<div class="content-container">
-									{{{message.content}}}
-								</div>
-							</div>
-						</div>
-					</li>
+					<li class="message admin-message" transition="admin" v-for="message in admin" id="message-li-admin"></li>
 				</ul>
-			</article>
+			</section>
 
       <footer>
-				<marquee class="bulletin">
+				<div class="marquee bulletin">
 					/*execute `test()` in console to run local emulations*/
-				</marquee>
+				</div>
   		</footer>
 		</div>
 

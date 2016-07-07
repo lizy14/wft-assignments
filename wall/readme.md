@@ -18,12 +18,12 @@ lizy14@mails.tsinghua.edu.cn
 
 all, noting that
 
-- long messages are just trimmed
+- long messages are just trimmed.
 
 ### bonus
 
-* data binding, using `Vue.js`
-* support for emoji and wechat faces, using third party libraries
+* data binding;
+* support for emoji and wechat faces.
 
 ## notes on implementation
 
@@ -36,21 +36,24 @@ There is a single unitary interface to handle all 3 kinds of messages, including
 
 Defined in `network.js` and being reusable, it lowers the coupling between networking and the message handling logic, enables an easy implementation of local emulation, and makes the codes clean.
 
-Uses Fetch API instead of traditional Ajax. I love the concept of Promises!
+Uses Fetch API instead of traditional Ajax.
 
 ### message buffer
 There is a FIFO buffer of incoming messages, to make sure that when too much messages arrives within a short period of time, the app does not crash or freeze up.
 
+> networking -> messageHandler -> [buffer] -> messageDispatcher -> messagesManager -> rendering
 
 ### user avatar
-If an avatar takes too long to load, an "anonymous" avatar is displayed alternatively. When loading finishes, the actual one fades out.
+If an avatar takes too long to load, an "anonymous" avatar is displayed instead. When loading finishes, the actual one fades out.
 
 This feature involves `<img>`'s `onload` event.
 
 ### administrator messages
-As an overlay.
+Displayed as an overlay.
 
 ### animation
+
+I love CSS3 transition!
 
 * user avatar fading in;
 * new messages coming in;
@@ -59,22 +62,22 @@ As an overlay.
 * admin message going out;
 * admin message replaced by a new one.
 
-I love CSS3 transitions!
+I love CSS3 keyframe animation!
 
-There is also a automatically scrolling bulletin area, located at the bottom, which is implemented with `<marquee>`.
+* automatically scrolling bulletin area.
 
 ### responsive layout
-Taking advantage of CSS calc() function and relative length units, the content can always fill the window, and the page won't be broken when you resize the window.
-
-Still, I have to admit that this page looks no good when resolution is lower than 1024x768. And don't zoom.
-
+Taking advantage of CSS relative length units, the content of the page can always fill the window. I'm confident to say that this page looks good everywhere - desktop and mobile, portrait and landscape, from 21:9 to 5:4, from 320x240 to 2048x1536.
 
 ### use of third-party libraries
 
-* [jQuery](https://github.com/jquery/jquery/), only its selector and `addClass` `removeClass` methods, as syntactic sugar;
+Libraries are loaded from CDN, meaning that you need an active Internet connection.
+
+* [jQuery](https://github.com/jquery/jquery/), only its `$` selector and `addClass` `removeClass` methods, as syntactic sugar;
 * [Vue.js](https://github.com/vuejs/vue), to update the rendering of messages dynamically;
 * [socket.io](https://github.com/socketio/socket.io-client), to handle websocket communications;
 * [twemoji](https://github.com/twitter/twemoji), to translate emoji into images;
-* [wechatface](https://github.com/weixinhost/wechatface), to wechat faces emoji into images.
+* [wechatface](https://github.com/weixinhost/wechatface), to translate wechat faces into images.
+
 
 \#EOF
