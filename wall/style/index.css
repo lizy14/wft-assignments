@@ -30,7 +30,9 @@ body{
 	display: flex;
 	height: 100%;
 	align-items: center;
-	height: 100%;
+}
+.wechatface{
+
 }
 .message-left{
 	width: 200px;

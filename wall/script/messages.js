@@ -45,6 +45,9 @@ function messageHandler(message){
 
 	console.log(message);
 
+	message.content = twemoji.parse(message.content);
+	message.content = wechatFace.faceToHTML(message.content);
+
 	if(message.isAdmin === true){
 		function clearAdmin(){
 			while(messagesManager.admin.pop());
@@ -94,7 +97,7 @@ function test(interval){
 	}, 8000);
 	setInterval(function(){
 		messageHandler({
-			'content': "I am a message, " + ((new Date()).valueOf()/100).toFixed(20),
+			'content': "/::)\u2764\uFE0F I am a message, " + ((new Date()).valueOf()/100).toFixed(20),
 			'headimgurl': 'https://avatars2.githubusercontent.com/u/9985286',
 			'nickname': 'Zhaoyang',
 		});

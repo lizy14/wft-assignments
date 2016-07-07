@@ -1,6 +1,6 @@
 # WeWall Front-end
 
-[demo](static.nullspace.cn/wft-assignments/wall)
+[demo](http://static.nullspace.cn/wft-assignments/wall)
 
 You may execute `test()` in console to run local emulations.
 
@@ -18,11 +18,12 @@ lizy14@mails.tsinghua.edu.cn
 
 all, noting that
 
-- Long messages are just trimmed
+- long messages are just trimmed
 
 ### bonus
 
 * data binding, using `Vue.js`
+* support for emoji and wechat faces, using third party libraries
 
 ## notes on implementation
 
@@ -31,9 +32,9 @@ There is a single unitary interface to handle all 3 kinds of messages, including
 
 * new messages, from `new message` event, websocket;
 * old messages, from response to `get` request;
-* administrator messages, from `admin` event, websocket;
+* administrator messages, from `admin` event, websocket.
 
-Defined in `network.js` and being reusable, it lowers the coupling between networking the message handling logic, enables an easy implementation of local emulation, and makes the codes clean.
+Defined in `network.js` and being reusable, it lowers the coupling between networking and the message handling logic, enables an easy implementation of local emulation, and makes the codes clean.
 
 Uses Fetch API instead of traditional Ajax. I love the concept of Promises!
 
@@ -42,7 +43,7 @@ There is a FIFO buffer of incoming messages, to make sure that when too much mes
 
 
 ### user avatar
-If an avatar takes too long to load, an alternative "anonymous" avatar is displayed instead. When loading finishes, the actual one fades out.
+If an avatar takes too long to load, an "anonymous" avatar is displayed alternatively. When loading finishes, the actual one fades out.
 
 This feature involves `<img>`'s `onload` event.
 
@@ -63,15 +64,17 @@ I love CSS3 transitions!
 There is also a automatically scrolling bulletin area, located at the bottom, which is implemented with `<marquee>`.
 
 ### responsive layout
-Taking advantage of CSS calc() function and relative length units, the content can always fill the window, and the page won't be broken when you do resizing.
+Taking advantage of CSS calc() function and relative length units, the content can always fill the window, and the page won't be broken when you resize the window.
 
-Still, it's worth mentioning that this page looks best on 1024x768 full-screen display. This is practical, considering a typical projector.
+Still, it's worth mentioning that this page looks no good when resolution is lower than 1024x768. And don't zoom.
 
 
 ### use of third-party libraries
 
-* jQuery, only its selector and `addClass` `removeClass` methods, as syntactic sugar;
-* Vue.js, to update the rendering of messages dynamically;
-* socket.io, to handle websocket communications.
+* [jQuery](https://github.com/jquery/jquery/), only its selector and `addClass` `removeClass` methods, as syntactic sugar;
+* [Vue.js](https://github.com/vuejs/vue), to update the rendering of messages dynamically;
+* [socket.io](https://github.com/socketio/socket.io-client), to handle websocket communications;
+* [twemoji](https://github.com/twitter/twemoji), to translate emoji into images;
+* [wechatface](https://github.com/weixinhost/wechatface), to wechat faces emoji into images.
 
 \#EOF
