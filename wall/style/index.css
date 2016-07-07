@@ -1,116 +1,141 @@
-body{
+body {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
 	background: #233;
 	color: white;
-	height: 100vh;
-  overflow: hidden;
-	font-size: 2em;
-
 }
 
-.avatar-container{
+.avatar-container {
 	position: relative;
-	height: 100px;
+	display: flex;
+	margin: 0 auto;
+	width: 15vh;
+	height: 15vh;
+	max-width: 20vw;
+	max-height: 20vw;
 	background-image: url(../image/unknown.gif);
 	background-size: cover;
-	display: flex;
-	margin: 0 50px;
-	width: 100px;
 }
-.avatar{
-	height: 100px;
-	width: 100px;
+
+.avatar {
+	width: 15vh;
+	height: 15vh;
+	max-width: 20vw;
+	max-height: 20vw;
 	transition: opacity .3s;
 }
-.avatar-loading{
+
+.avatar-loading {
 	opacity: 0;
 }
-.message-right{
-	height: calc(((100vh - 80px) / 3 - 60px) * .8);
-	line-height: calc(((100vh - 80px) / 3 - 60px) * .4);
-	overflow: hidden;
-	align-items: center;
+
+.message-right {
 	display: flex;
+	overflow: hidden;
+	height: 22vh;
+	line-height: 11vh;
+	align-items: center;
 }
-.content-container{
-	font-size: calc(((100vh - 80px) / 3 - 60px) * .3);
-  white-space: normal;
+
+.content-container {
 	margin: auto 0;
+	white-space: normal;
+	font-size: 8vh;
 }
-.wechatface, .emoji{
+
+.wechatface, .emoji {
 	display: inline;
-	margin: 0 10px;
-	height: calc(((100vh - 80px) / 3 - 60px) * .3);
+	margin: 0 .3em;
+	height: 8vh;
 }
-.message-left{
-	width: 200px;
-	margin-bottom: 200px;
+
+.message-left {
 	float: left;
 	margin-right: 1em;
-	margin-top: calc(((100vh - 80px) / 3 - 180px) / 2);
+	width: 20vw;
 }
-.message{
-	color: white;
+
+.message {
 	overflow: hidden;
-	padding: 10px;
-	list-style-type: none;
-	height: calc((100vh - 20px) / 3 - 80px);
+	margin: 4vh;
+	padding: 2vh;
+	height: 22vh;
+	border-radius: 2vh;
 	background-color: #152828;
-	margin: 30px;
+	color: white;
+	list-style-type: none;
 	white-space: nowrap;
 }
-.username-container{
-	font-size: 1em;
-	width: 100%;
-	display:block;
-	text-align: center;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+
+.username-container {
+	display: block;
 	overflow: hidden;
+	width: 100%;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 6vh;
 }
 
-.bulletin{
+.bulletin {
 	position: absolute;
-  bottom: 0px;
-  margin-bottom: .5em;
-  font-size: 1.2em;
+	bottom: 0;
+	padding-bottom: 2vh;
+	height: 6vh;
+	width: fit-content;
+	font-size: 5vh;
 }
 
-/*transitions*/
-.item-transition, .admin-transition{
-	transition-property: all;
+.marquee {
+  animation: marquee 8s linear infinite;
+	word-break: break-all;
+}
+
+@keyframes marquee {
+  0% { left: +100%; }
+  100% { left: -100%; }
+}
+
+.item-transition, .admin-transition {
 	transition-duration: .3s;
+	transition-property: all;
 }
-.item-enter, .admin-enter{
-	margin-left: 100px;
-  opacity: 0;
-}
-.item-leave, .admin-leave{
-	margin-left: -100px;
+
+.item-enter, .admin-enter {
+	margin-left: 20vw;
 	opacity: 0;
 }
-.moving{
-	margin-top: calc((80px - 100vh) / 3 + 12px);
+
+.item-leave, .admin-leave {
+	margin-left: -20vw;
+	opacity: 0;
+}
+
+.moving {
+	margin-top: -30vh;
 	transition: margin-top .3s;
 }
 
-ul{
-	padding-left:0;
-}
-
-#messages-container{
+.messages-container {
 	position: absolute;
 	top: 0;
 	width: 100%;
 }
-#admin-container{
+
+#admin-messages-container {
 	z-index: 2333;
-	position: absolute;
-	width: 100%;
-	top:0;
 }
-.admin-message{
-	margin-bottom:0px;
+
+.admin-message {
+	margin-bottom: 0;
+	border-radius: 5vh;
 	background-color: #394b4b;
-	border-radius: 20px;
-	transform: translateX(-10px) rotateZ(-3deg);
+	transform: rotateZ(-3deg);
+}
+
+ul {
+	margin: 0;
+	padding: 0;
 }

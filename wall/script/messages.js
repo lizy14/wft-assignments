@@ -1,6 +1,9 @@
 'use strict';
 
-var numberOfMessages = 3; //maxium number of messages to be displayed
+// if you change this, you have to modify css manually
+var numberOfMessages = 3;
+
+$('#message-li-admin').html($('#message-li').html());
 
 var messagesManager = new Vue({
   el: '.page-container',
@@ -20,10 +23,10 @@ var messagesManager = new Vue({
 
 Vue.transition('item', {
 	beforeLeave: function(el){
-		$('#messages-container').addClass('moving');
+		$('#ordinary-messages-container').addClass('moving');
   },
 	afterLeave: function(el){
-		$('#messages-container').removeClass('moving');
+		$('#ordinary-messages-container').removeClass('moving');
   },
 });
 
@@ -32,6 +35,9 @@ function imageLoaded(el){
 }
 
 var buffer = []; //first in, first out
+/*
+messageHandler -> [buffer] -> messageDispatcher -> messagesManager
+*/
 
 var adminTimer = null;
 
@@ -59,8 +65,10 @@ function messageHandler(message){
 				clearAdmin();
 				adminTimer = null;
 		}, 10 * 1000);
+
 		clearAdmin();
 		setTimeout(function(){
+			clearAdmin();
 			messagesManager.admin.push(message);
 		}, 400);
 
@@ -69,7 +77,7 @@ function messageHandler(message){
 	}
 }
 
-var timer = setInterval(function(){
+var timer = setInterval(function messageDispatcher(){
 	if(buffer.length > 0){
 		messagesManager.newMessage(buffer.shift());
 	}
