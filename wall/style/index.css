@@ -89,13 +89,13 @@ body {
 }
 
 .marquee {
-  animation: marquee 8s linear infinite;
+	animation: marquee 8s linear infinite;
 	word-break: break-all;
 }
 
 @keyframes marquee {
-  0% { left: +100%; }
-  100% { left: -100%; }
+	0% { left: +100%; }
+	100% { left: -100%; }
 }
 
 .item-transition, .admin-transition {
