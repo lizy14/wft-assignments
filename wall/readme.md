@@ -66,7 +66,7 @@ There is also a automatically scrolling bulletin area, located at the bottom, wh
 ### responsive layout
 Taking advantage of CSS calc() function and relative length units, the content can always fill the window, and the page won't be broken when you resize the window.
 
-Still, it's worth mentioning that this page looks no good when resolution is lower than 1024x768. And don't zoom.
+Still, I have to admit that this page looks no good when resolution is lower than 1024x768. And don't zoom.
 
 
 ### use of third-party libraries
