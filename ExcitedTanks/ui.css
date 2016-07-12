@@ -1,0 +1,35 @@
+div.overlay{
+	z-index: 2333;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,.3);
+	text-align: center;
+	padding-top: 60vh;
+	color: white;
+	font-size: 5em;
+	text-shadow: 1px 1px 2px black, 0 0 1em #8BC34A, 0 0 0.2em #4CAF50;
+	transition: opacity 1s;
+	opacity: 0;
+}
+
+.instruction{
+	font-size: 0.4em;
+	margin-top: .3em;
+}
+
+.result{
+	font-size: 1em;
+	line-height: 1.5em;
+}
+
+.result a{
+	color: white;
+	text-decoration: none;
+	border: 0.05em solid white;
+}
+
+.result a:hover{
+	color: yellow;
+	border-color: yellow;
+}
