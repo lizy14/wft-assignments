@@ -272,7 +272,8 @@ Main.prototype.updatePosition = function (args) {
 Main.prototype.updateLife = function(i) {
     this._tanks[i].life -= 1;
     if (this._tanks[i].life <= 0) {
-        this._gameEnd(i);
+				this._tanks[i].hearts[0].enabled = false;
+				this._gameEnd(i);
     } else {
         this._tanks[i].hearts[this._tanks[i].life].enabled = false;
     }
@@ -280,8 +281,8 @@ Main.prototype.updateLife = function(i) {
 
 Main.prototype._gameEnd = function(winner){
     document.getElementById('winner-name').innerText = {
-        0: 'Alice',
-        1: 'Bob',
+        1: 'Alice',
+        0: 'Bob',
     }[winner];
     document.getElementById('game-over').style.opacity = 1;
 }
@@ -354,9 +355,9 @@ Main.prototype._updateCamera = function(dt){
                 this._cameraBeforeTimer = 0;
             }
 
-
             var myself = this._tanks[Main.actorMap[this._actor]].getPosition();
             var target = this._tanks[[1, 0][Main.actorMap[this._actor]]].getPosition();
+
             var angleFlag = (this._actor==='P1'? 1: -1);
             /*
 
