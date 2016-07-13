@@ -282,7 +282,7 @@ Main.prototype.updateLife = function(i) {
 Main.prototype._gameEnd = function(winner){
     document.getElementById('winner-name').innerText = {
         1: 'Alice',
-        0: 'Bob',
+        0: 'Bob'
     }[winner];
     document.getElementById('game-over').style.opacity = 1;
 }
@@ -398,9 +398,9 @@ Main.prototype._updateCamera = function(dt){
 
             }else if(t < 80){
                 //B -> A
-                var a = (t-60) / 20;
-                this._camera.setPosition(halfWay(-10, -2, a), halfWay(1, .2, a), myself.z * halfWay(2, 1, a));
-                this._camera.setLocalEulerAngles(0, -90 - 50*halfWay(angleFlag, 0, a), 0);
+                var a_ = (t-60) / 20;
+                this._camera.setPosition(halfWay(-10, -2, a_), halfWay(1, .2, a_), myself.z * halfWay(2, 1, a_));
+                this._camera.setLocalEulerAngles(0, -90 - 50*halfWay(angleFlag, 0, a_), 0);
 
             }else{
                 //look at A
@@ -413,7 +413,7 @@ Main.prototype._updateCamera = function(dt){
             var p = this._entity.getPosition();
             var v = this._entity.rigidbody.linearVelocity.normalize();
 
-            function f(x, y, k){
+            var f = function(x, y, k){
                 if(!k)
                     k=3;
                 return x - k*y;
@@ -438,8 +438,8 @@ Main.prototype._updateCamera = function(dt){
 
             break;
         case 'ready':
-            var myself = this._tanks[Main.actorMap[this._actor]].getPosition();
-            this._camera.setPosition(-2, .2, myself.z);
+            var myself_ = this._tanks[Main.actorMap[this._actor]].getPosition();
+            this._camera.setPosition(-2, .2, myself_.z);
             this._camera.setLocalEulerAngles(0, -90, 0);
             break;
     }
