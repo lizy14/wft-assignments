@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <meta charset='utf-8'>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="ui.css">
+    <link rel="manifest" href="manifest.json">
+    <title>ExcitedTanks</title>
+    <script src="playcanvas-stable.min.js"></script>
+    <script>
+        ASSET_PREFIX = "";
+        SCENE_PATH = "444235.json";
+        CONTEXT_OPTIONS = {
+            'alpha': false,
+            'preserveDrawingBuffer': false
+        };
+        pc.script.legacy = false;
+    </script>
+</head>
+<body>
+
+		<div id="game-start" class="overlay">
+			ExcitedTanks
+			<div class="instruction">
+				Press SPACE to launch
+			</div>
+			<div class="instruction">
+				Player 0: W/A/S/D, Player 1: ↑/←/↓/→
+		  </div>
+		</div>
+		<div id="game-over" class="overlay">
+			<div class="result">
+				Winner: <i id="winner-name"></i>
+		  </div>
+			<div class="result">
+				<a href="javascript:window.location.reload();">
+					Play Again
+				</a>
+			</div>
+		</div>
+    <script src="__start__.js"></script>
+    <script src="__loading__.js"></script>
+</body>
+</html>
